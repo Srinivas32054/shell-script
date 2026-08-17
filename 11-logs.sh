@@ -18,17 +18,17 @@ VALIDATE(){
         echo -e "$2 ... $G SUCCESS"
     fi
 }
-echo "Script started executing at : $TIMESTAMP" &>>$LOG_FILE
+echo "Script started executing at : $TIMESTAMP" &>>$LOG_FILE_NAME
 
 if [ $USERID -ne 0 ]
 then
     echo "ERROR:: You must have sudo access"
     exit 1
 fi
-dnf list installed mysql &>>$LOG_FILE
+dnf list installed mysql &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
-    dnf install mysql -y   &>>$LOG_FILE
+    dnf install mysql -y   &>>$LOG_FILE_NAME
     VALIDATE $? "Installing Mysql"
 else
     echo -e "Mysql is aalready ... $Y Installed"
